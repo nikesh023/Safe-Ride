@@ -1,0 +1,252 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Your Location</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+
+ <script src="js/jquery.js"></script>
+
+ <script src="js/jquery.mobile-1.4.5.js"></script>
+
+    <!-- Load Leaflet from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+    crossorigin=""></script>
+
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js"
+    integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ=="
+    crossorigin=""></script>
+
+
+  <!-- Load Esri Leaflet Geocoder from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+    crossorigin="">
+  <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+    crossorigin=""></script>
+	<style>
+#box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				display: none;
+				position:center;
+		}
+
+.ui-listview > li .ui-collapsible-heading {
+  margin: 0;
+}
+.ui-collapsible.ui-li-static {
+  padding: 0;
+  border: none !important;
+}
+.ui-collapsible + .ui-collapsible > .ui-collapsible-heading > .ui-btn {
+  border-top: none !important;
+}
+/* Nested list button colors */
+.ui-listview .ui-listview .ui-btn {
+    background: #1D3AF0;
+}
+.ui-listview .ui-listview .ui-btn:hover {
+    background: #F01414;
+}
+.ui-listview .ui-listview .ui-btn:active {
+    background: #f1f1f1;
+}
+#btn-start {
+  background: transparent;
+  font-size: 1em;
+  padding: 10px 5px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  font-weight: 100;
+  width: 150px;
+  letter-spacing: 3px;
+  border-radius: 20px;
+  border: 1px solid #2196F3;
+  color:  #2196F3;
+  cursor: pointer;
+  transition: 0.2s all ease;
+}
+
+#btn-start:hover {
+  background: #2196F3;
+  color: #fff;
+}
+#btn-start4 {
+  background: transparent;
+  font-size: 1em;
+  padding: 10px 5px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  font-weight: 100;
+  width: 150px;
+  letter-spacing: 3px;
+  border-radius: 20px;
+  border: 1px solid #2196F3;
+  color:  #2196F3;
+  cursor: pointer;
+  transition: 0.2s all ease;
+}
+
+#btn-start:hover4 {
+  background: #2196F3;
+  color: #fff;
+}
+
+</style>
+
+
+
+</head>
+<body>
+ <!--HomePage-->
+  <div data-role="page" id="pageone" data-theme="a">
+   <div data-role="header" style="background-color: #F8F2DF;" >
+ <h1 style="font-family:serif;  padding-bottom: 0;  text-shadow: 0px 0px black; ">Safe Ride</h1>
+       
+        <a href="#left-panel" data-icon="bars" data-iconpos="notext" data-shadow="true" data-iconshadow="true" class="ui-nodisc-icon" title="Swipe to Open Menu" style="background-color:#F4B14D;"></a>
+       
+    </div><!-- /header -->
+    
+    <div data-role="panel" id="left-panel" style="background-color: #F8F2DF;">
+       
+        <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right"style="color: #BF3434;">Close</a>
+        <h3 style="font-family: serif;  text-shadow: 0px 0px #688499; font-weight: bold; text-align: center;
+    margin-bottom: initial; color: #BF3434;">Menu</h3>
+<br></br>
+         <ul data-role="listview">
+            <li><a href="index.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-home" style="text-align: center;color: #BF3434;">Home</a></li>
+
+              <li><a href="call.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-phone"style="text-align: center;color: #BF3434;">Call someone</a></li>
+              <li><a href="tips.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Tips to stop drinking alcohol</a></li>
+
+
+          <li><a href="geo.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-location"style="text-align: center;color: #BF3434;">Locate Yourself</a></li>
+
+          <li><a href="test.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Test if you can drive</a></li>
+
+          <li><a href="quiz.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-check"style="text-align: center;color: #BF3434;">Assess yourself</a></li>
+
+          <li><a href="calculator.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-heart"style="text-align: center;color: #BF3434;">Test your blood</a></li>
+
+          <li><a href="videos.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-video"style="text-align: center;color: #BF3434;">Videos</a></li>
+
+        </ul>
+    </div><!-- /panel -->
+
+  <div data-role="main" class="ui-content">
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+
+<script>
+
+
+navigator.geolocation.getCurrentPosition(userLocated,
+locationError); //get the current position of the user
+function userLocated(position) {
+var latitude = position.coords.latitude; // store the cordinate of the latitude
+var longitude = position.coords.longitude; // store the cordinate of the latitude
+var timeOfLocation = position.timestamp;
+
+
+  var map = L.map('map').setView([latitude, longitude], 12);
+  var marker = L.marker([latitude, longitude]).addTo(map);
+  marker.bindPopup("My Location").openPopup();
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+
+
+
+
+  var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+
+  var results = L.layerGroup().addTo(map);
+
+  searchControl.on('results', function(data){
+    results.clearLayers();
+    for (var i = data.results.length - 1; i >= 0; i--) {
+      results.addLayer(L.marker(data.results[i].latlng));
+    }
+  });
+
+
+}
+function locationError(error) {
+alert(error.code); // if it encounter any error , this line catches the error an alert it to the user.
+}
+
+
+
+
+
+
+</script>
+
+
+
+<p>Save Your Location.</p>
+
+<button id="btn-start"  onclick="getLocation()">Save</button>
+<button id="btn-start4"  onclick="redirect()">Show Position</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+var name, email;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+  function showPosition(position) {
+  name= position.coords.latitude;
+  email= position.coords.longitude;
+  
+    window.localStorage.setItem("name",Latitude);
+
+    window.localStorage.setItem("email",Longitude);
+	
+  
+}
+
+
+  
+}
+
+
+
+
+</script>
+
+<script>
+
+function redirect(){
+
+window.location.href = "./showlocation.html";
+
+}
+
+</script>
+
+</div>
+<div data-role="footer">
+		<h4 style="font-family:courier; color: #BF3434;">&copy Safe Ride</h4>
+	</div><!-- /footer -->
+
+</body>
+</html>

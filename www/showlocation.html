@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title> Test Your Reaction Time </title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+
+ <script src="js/jquery.js"></script>
+
+ <script src="js/jquery.mobile-1.4.5.js"></script>
+
+<style type="text/css">
+#box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				display: none;
+				position:center;
+		}
+
+.ui-listview > li .ui-collapsible-heading {
+  margin: 0;
+}
+.ui-collapsible.ui-li-static {
+  padding: 0;
+  border: none !important;
+}
+.ui-collapsible + .ui-collapsible > .ui-collapsible-heading > .ui-btn {
+  border-top: none !important;
+}
+/* Nested list button colors */
+.ui-listview .ui-listview .ui-btn {
+    background: #1D3AF0;
+}
+.ui-listview .ui-listview .ui-btn:hover {
+    background: #F01414;
+}
+.ui-listview .ui-listview .ui-btn:active {
+    background: #f1f1f1;
+}
+</style>
+<script>
+
+$( document ).on( "pagecreate", "#pageone", function() {
+    $( document ).on( "swipeleft swiperight", "#pageone", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft" ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
+
+</script>
+
+
+
+
+
+
+
+</head>
+<body >
+	 <div data-role="page" id="pageone" data-theme="a" >
+  <div data-role="header" style="background-color:#F8F2DF;">
+ <h1 style="font-family:serif; padding-bottom: 0; color: #BF3434; ">Safe Ride</h1>
+
+<a href="#left-panel" data-icon="bars" data-iconpos="notext" data-shadow="true" data-iconshadow="true" class="ui-nodisc-icon" title="Swipe to Open Menu" style="background-color:#F4B14D;"></a>
+
+</div><!-- /header -->
+
+<div data-role="panel" id="left-panel" style="background-color: #F8F2DF;">
+
+<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right" style="color: #BF3434;" >Close</a>
+<h3 style="font-family: serif; font-size: 25px; text-shadow: 0px 0px #688499; font-weight: bold; text-align: center;
+    margin-bottom: initial; color: #BF3434;">Menu</h3>
+<br></br>
+<ul data-role="listview">
+              <li><a href="index.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-home" style="text-align: center;color: #BF3434;">Home</a></li>
+
+              <li><a href="call.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-phone"style="text-align: center;color: #BF3434;">Call someone</a></li>
+		 
+		 <li><a href="tips.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Tips to stop drinking alcohol</a></li>
+
+
+			    <li><a href="geo.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-location"style="text-align: center;color: #BF3434;">Locate Yourself</a></li>
+
+		      <li><a href="test.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Test if you can drive</a></li>
+
+			    <li><a href="quiz.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-check"style="text-align: center;color: #BF3434;">Assess yourself</a></li>
+
+			    <li><a href="calculator.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-heart"style="text-align: center;color: #BF3434;">Test your blood</a></li>
+
+			    <li><a href="videos.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-video"style="text-align: center;color: #BF3434;">Videos</a></li>
+</div><!-- /panel -->
+
+ <div data-role="main" class="ui-content" >
+ <h1>Your Result</h1>
+ <div id="output"></div>
+<script type="text/javascript">
+$('#output').html("Latitude:"+window.localStorage.getItem("Latitude")+"<br>Longitude:"+window.localStorage.getItem("Longitude"));
+
+</script>
+ 
+ </div>
+ </div>
+ 
+ </body>
+ </html>
+

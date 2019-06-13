@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title> Test Your Reaction Time </title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+
+ <script src="js/jquery.js"></script>
+
+ <script src="js/jquery.mobile-1.4.5.js"></script>
+
+<style type="text/css">
+body {
+  background: #f1f1f1;
+  font-family: Roboto;
+  margin: 0;
+}
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+#title-area {
+  text-align: center;
+  padding:0px;
+  margin: 0;
+  height: 100vh;
+  background: url(drive4.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #F9D252;
+
+}
+
+#title-area h1 {
+  color:#F9D252;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 900;
+  font-size: 3em;
+  padding-top: 0;
+  margin: 0;
+  text-shadow: 0px 0px #688499;
+}
+
+#title-area p {
+  font-size: 3em;
+  font-weight: 200;
+  color: #F9D252;
+}
+
+main {
+  text-align: center;
+}
+
+#btn-start {
+  background: transparent;
+  font-size: 1em;
+  padding: 10px 5px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  font-weight: 100;
+  width: 150px;
+  letter-spacing: 3px;
+  border-radius: 20px;
+  border: 1px solid #2196F3;
+  color:  #2196F3;
+  cursor: pointer;
+  transition: 0.2s all ease;
+}
+
+#btn-start:hover {
+  background: #F8F2DF;
+  color: #fff;
+}
+
+
+/*
+ * Game Time
+ */
+
+ .hide {
+  display: none;
+ }
+
+ .show {
+  display: block;
+  background: #f1f1f1;
+  height: 100vh;
+  margin: 0 auto;
+ }
+
+#game-div {
+  width: 500px;
+  height: 60vh;
+  margin: 0px auto 0 auto;
+  display: block;
+  border-radius: 10px;
+  background: #fff;
+}
+
+#restart {
+  font-size: 0.7em;
+  top: 10px;
+  right: 1.1em;
+  width: 60px;
+  border-radius: 20px;
+  padding: 5px 8px;
+  border: 1px solid #2196f3;
+  text-decoration: none;
+  color: #2196f3;
+  transition: 0.2s all ease
+ }
+#restart:hover {
+  background: #2196f3;
+  color: #fff;
+ }
+
+#exit {
+  font-size: 0.7em;
+  top: 50px;
+  right: 1.1em;
+  width: 60px;
+  border-radius: 20px;
+  padding: 5px 8px;
+  border: 1px solid #2196f3;
+  text-decoration: none;
+  color: #2196f3;
+  transition: 0.2s all ease
+ }
+#exit:hover {
+  background: #2196f3;
+  color: #fff;
+ }
+
+ #timer-div {
+  width: 100%;
+  background-color: #F8F2DF;
+  color:#F4B14D;
+ }
+
+#score {
+  font-weight: 500;
+  color: #1976D2;
+  height: 20px;
+ }
+
+#reaction-time {
+  width: 100%;
+  color: #2196f3;
+}
+
+
+#the-circle {
+  position: relative;
+  cursor: pointer;
+ }
+
+#stats-div {
+  margin-top: 0;
+  font-size: 0.8em;
+}
+#btn-start{
+  margin:auto;
+  display:block;
+}
+#box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				display: none;
+				position:center;
+		}
+
+.ui-listview > li .ui-collapsible-heading {
+  margin: 0;
+}
+.ui-collapsible.ui-li-static {
+  padding: 0;
+  border: none !important;
+}
+.ui-collapsible + .ui-collapsible > .ui-collapsible-heading > .ui-btn {
+  border-top: none !important;
+}
+/* Nested list button colors */
+.ui-listview .ui-listview .ui-btn {
+    background: #1D3AF0;
+}
+.ui-listview .ui-listview .ui-btn:hover {
+    background: #F01414;
+}
+.ui-listview .ui-listview .ui-btn:active {
+    background: #f1f1f1;
+}
+
+
+
+ </style>
+  <script type="text/javascript">
+    window.onload = function() {
+
+
+  var createdTime,
+    clickedTime,
+    reactionTime,
+    avgReactionTime = 0,
+    counter = 1;
+
+  //cache
+  var titleArea = document.getElementById('title-area');
+  var gameArea = document.getElementById('game-area');
+  var restart = document.getElementById('restart');
+  var exit = document.getElementById('exit');
+  var stat = document.getElementById('stat');
+  var theCircle = document.getElementById('the-circle');
+  var btnStart = document.getElementById('btn-start');
+  var score = document.getElementById('score');
+
+
+  //start game
+  btnStart.onclick = function() {
+
+    reactionTime = 0;
+    score.textContent = "";
+
+    titleArea.className = "hide";
+    gameArea.className = "show";
+
+    startGame();
+
+  }
+
+  function startGame() {
+
+    var time = Math.random();
+    time *= 200;
+
+    setTimeout(react, time);
+
+  }
+
+
+  //react
+  function react() {
+
+    var x = Math.random() * 300;
+    var y = Math.random() * 250;
+
+    theCircle.src = "bottle.jpg";
+    theCircle.style.left = x + "px";
+    theCircle.style.top = y + "px";
+    createdTime = Date.now();
+
+    theCircle.onclick = function() {
+
+      clickedTime = Date.now();
+      reactionTime = (clickedTime - createdTime) / 1000;
+      this.src = "";
+      score.textContent = reactionTime + ' s';
+
+      avgReactionTime = (avgReactionTime + reactionTime);
+      stat.textContent = (avgReactionTime / counter).toFixed(3);
+
+
+      console.log(reactionTime);
+
+      counter++;
+      //continue playing | loop
+      if(counter<11){
+      startGame();
+
+    }else{
+          titleArea.className = "show";
+    gameArea.className = "hide";
+    stat.textContent = (avgReactionTime / counter).toFixed(3);
+
+    if(((avgReactionTime / counter).toFixed(3))<1.6){
+    document.getElementById("result").innerHTML="Your average reaction time is "+(avgReactionTime / counter).toFixed(3)+" </br>You can drive!";
+    document.getElementById("result").style.color = "yellow";
+    counter=1;
+    avgReactionTime=0;
+    stat.textContent =0;
+  }else{
+    document.getElementById("result").innerHTML="Your average reaction time is "+(avgReactionTime / counter).toFixed(3)+" </br>You CANNOT drive!";
+    document.getElementById("result").style.color = "red";
+    counter=1;
+    avgReactionTime=0;
+    stat.textContent =0;
+  }
+    }
+    };
+
+  }
+
+  //restart game
+  restart.onclick = function(e) {
+
+    reactionTime = 0;
+    avgReactionTime = 0;
+    counter = 1;
+    score.textContent = "";
+    stat.textContent = "";
+
+    startGame();
+
+  }
+
+  //exit game
+  exit.onclick = function(e) {
+    titleArea.className = "show";
+    gameArea.className = "hide";
+
+    stat.textContent = "";
+  }
+
+
+
+}
+
+
+  </script>
+  <script>
+
+$( document ).on( "pagecreate", "#pageone", function() {
+    $( document ).on( "swipeleft swiperight", "#pageone", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft" ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
+
+</script>
+</head>
+
+<body>
+   <!--HomePage-->
+  <div data-role="page" id="pageone" data-theme="a">
+  <div data-role="header" style="background-color: #F8F2DF; font-size: 30px;" >
+       
+        <a href="#left-panel" data-icon="bars" data-iconpos="notext" data-shadow="true" data-iconshadow="true" class="ui-nodisc-icon" title="Swipe to Open Menu" style="background-color:#F4B14D;"></a>
+       
+    </div><!-- /header -->
+    
+    <div data-role="panel" id="left-panel" style="background-color: #F8F2DF; ">
+       
+        <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right" style="color: #BF3434;">Close</a>
+        <h3 style="font-family: serif;  text-shadow: 0px 0px #688499; font-weight: bold; text-align: center;
+    margin-bottom: initial;color: #BF3434;">Menu</h3>
+<br></br>
+         <ul data-role="listview">
+           <li><a href="index.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-home" style="text-align: center;color: #BF3434;">Home</a></li>
+
+              <li><a href="call.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-phone"style="text-align: center;color: #BF3434;">Call someone</a></li>
+
+              <li><a href="tips.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Tips to stop drinking alcohol</a></li>
+
+
+          <li><a href="geo.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-location"style="text-align: center;color: #BF3434;">Locate Yourself</a></li>
+
+          <li><a href="test.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Test if you can drive</a></li>
+
+          <li><a href="quiz.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-check"style="text-align: center;color: #BF3434;">Assess yourself</a></li>
+
+          <li><a href="calculator.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-heart"style="text-align: center;color: #BF3434;">Test your blood</a></li>
+
+          <li><a href="videos.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-video"style="text-align: center;color: #BF3434;">Videos</a></li>
+        </ul>
+    </div><!-- /panel -->
+
+
+
+  <div data-role="main" class="ui-content" style="padding: 0;">
+
+    <div id="title-area">
+      <h1 style="padding-top: 40px; padding-bottom: 30px; color: #F4B14D;">Reaction Time Game</h1>
+      <button id="btn-start" style="color: #F4B14D; text-shadow: 0px 0px #688499;  border-color: #F9D252; font-weight: bold;">Start</button>
+      <p id=result style="font-size: 25px; text-shadow: 0px 0px">Click on start</p>
+    </div>
+
+
+    <div id="game-area" class="hide">
+
+
+
+      <div id="timer-div">
+        <p style=" text-align: center; margin: 0;">Reaction Time Game</p>
+        <p id="score"></p>
+        <a href="#" id="exit">Exit</a>
+        <a href="#" id="restart">Restart</a>
+      </div>
+
+      <div id="game-div">
+        <img src="" id="the-circle">
+      </div>
+
+      <div id="stats-div">
+        <p style="color: #2196F3;">Average Reaction Time</p>
+        <p id="stat" style="color: #1976D2;"></p>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+
+ <!-- /footer -->
+  <div data-role="footer" data-position="fixed" style="background-color: #F8F2DF;">
+    <h4 style="font-family:courier; color: #BF3434;">&copy Safe Ride</h4>
+  </div><!-- /footer -->
+
+  </div> <!-- END of HomePage-->
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Safe Ride</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+<link rel="stylesheet"  href="responsiveslides.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.js"></script>
+<script src="js/jquery.js">
+
+
+
+
+
+
+
+</script>
+
+<style>
+#box {
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				display: none;
+				position:center;
+		}
+
+.ui-listview > li .ui-collapsible-heading {
+  margin: 0;
+}
+.ui-collapsible.ui-li-static {
+  padding: 0;
+  border: none !important;
+}
+.ui-collapsible + .ui-collapsible > .ui-collapsible-heading > .ui-btn {
+  border-top: none !important;
+}
+/* Nested list button colors */
+.ui-listview .ui-listview .ui-btn {
+    background: #1D3AF0;
+}
+.ui-listview .ui-listview .ui-btn:hover {
+    background: #F01414;
+}
+.ui-listview .ui-listview .ui-btn:active {
+    background: #f1f1f1;
+}
+
+.ui-content .rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 500px;
+  background-size: cover;
+
+  }
+
+}
+.ui-content .rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  }
+
+.ui-content .rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.ui-content .rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width:100%;
+  border: 0;
+  }
+/* For width 400px and larger: */
+@media only screen and (min-width: 800px) {
+  .ui-content .rslides img {
+    height:500px;
+  }
+
+</style>
+
+<script>
+
+$( document ).on( "pagecreate", "#pageone", function() {
+    $( document ).on( "swipeleft swiperight", "#pageone", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft" ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+</head>
+<body >
+	 <div data-role="page" id="pageone" data-theme="a"  >
+  <div data-role="header" style="background-color: #F8F2DF;" >
+ <h1 style="font-family:serif;  padding-bottom: 0; color: #BF3434; text-shadow: 0px 0px black; ">Safe Ride</h1>
+       
+        <a href="#left-panel" data-icon="bars" data-iconpos="notext" data-shadow="true" data-iconshadow="true" class="ui-nodisc-icon" title="Swipe to Open Menu" style="background-color:#F4B14D;"></a>
+       
+    </div><!-- /header -->
+    
+    <div data-role="panel" id="left-panel" style="background-color: #F8F2DF;">
+       
+        <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right"style="color: #BF3434;">Close</a>
+        <h3 style="font-family: serif;  text-shadow: 0px 0px #688499; font-weight: bold; text-align: center;
+    margin-bottom: initial; color: #BF3434;">Menu</h3>
+<br></br>
+         <ul data-role="listview">
+               <li><a href="index.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-home" style="text-align: center;color: #BF3434;">Home</a></li>
+
+              <li><a href="call.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-phone"style="text-align: center;color: #BF3434;">Call someone</a></li>
+							<li><a href="tips.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Tips to stop drinking alcohol</a></li>
+
+
+			    <li><a href="geo.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-location"style="text-align: center;color: #BF3434;">Locate Yourself</a></li>
+
+		      <li><a href="test.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Test if you can drive</a></li>
+
+			    <li><a href="quiz.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-check"style="text-align: center;color: #BF3434;">Assess yourself</a></li>
+
+			    <li><a href="calculator.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-heart"style="text-align: center;color: #BF3434;">Test your blood</a></li>
+
+			    <li><a href="videos.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-video"style="text-align: center;color: #BF3434;">Videos</a></li>
+
+        </ul>
+    </div><!-- /panel -->
+
+	<div role="main" class="ui-content"  style="margin: 0; padding: 0;">
+		<!-- style="background-image:url('drive3.jpg'); background-size: 100% 100%; height: 600px"-->
+		<!-- style="width: 1000px; margin:auto; height: 500px;  background-color: #F7F9DE; "-->
+		<ul class="rslides" style="margin: auto;">
+
+			  <li><img src="drive.jpg" alt=""></li>
+			  <li><img src="drive2.jpeg" alt=""></li>
+			  <li><img src="drive3.jpg" alt=""></li>
+			  <li><img src="drive6.jpg" alt=""></li>
+			  <li><img src="drive13.jpg" alt=""></li>
+			  <li><img src="drive11.jpg" alt=""></li>
+
+		</ul>
+
+		<div>
+			<h2 style="text-align: center; font-weight: bold;  margin: 0;">How does alcohol affects your driving ability</h2>
+
+			<p><span style="font-weight: bold;">Alcohol</span> is a substance that reduces the function of the brain, impairing thinking, reasoning and muscle coordination. All these abilities are essential to operating a vehicle safely.
+
+			As alcohol levels rise in a person’s system, the negative effects on the central nervous system increase, too. Alcohol is absorbed directly through the walls of the stomach and small intestine. Then it passes into the bloodstream where it accumulates until it is metabolized by the liver. Alcohol level is measured by the weight of the alcohol in a certain volume of blood. This is called Blood Alcohol Concentration, or BAC. At a BAC of .08 grams of alcohol per deciliter (g/dL) of blood, crash risk increases exponentially. Because of this risk, it’s illegal in all 50 States, the District of Columbia and Puerto Rico to drive with a BAC of .08 or higher. However, even a small amount of alcohol can affect driving ability. In 2017, there were 1,837 people killed in alcohol-related crashes where drivers had lower alcohol levels (BACs of .01 to .07 g/dL).
+
+			BAC is measured with a breathalyzer, a device that measures the amount of alcohol in a driver’s breath, or by a blood test.</p>
+			<p style="text-align: center; font-weight: bold;  margin: 0;">The more you drink, the more likely you are to have an accident</p>
+			<p>“That table looks perfectly safe to dance on.”</p>
+
+				<p>“Forgot my keys. I’ll just hop over this fence!”</p>
+
+				<p>These are just two examples of the more light-hearted side-effects of drinking alcohol once euphoria sets in. But the feeling you get when the amount of alcohol in your blood increases can have disastrous consequences too. It can make you overestimate your own abilities and behave recklessly. Thinking that road doesn’t look as busy or that gap isn’t so big to jump over.
+
+				As blood alcohol concentration (BAC) rises, so does the risk of accidents. BAC, the amount of alcohol in your breath or blood, is measured in mg of alcohol per 100ml of blood, or mg%. It’s affected by all sorts of factors, including how much alcohol you drink, how fast you drink it, your body size, how much you’ve eaten, your gender and even your emotional health.</p>
+		</div>
+		<p style="text-align: center; font-weight: bold;  margin: 0;">Alcohol slows you down</p>
+		<p>Alcohol affects your body’s responses. It slows down your brain which means you are more likely to have an accident.</p>
+		<p>Drinking alcohol can:</p>
+			<ul>
+				<li>affect our judgement and reasoning</li>
+				<li>slow down our reactions</li>
+				<li>upset our sense of balance and coordination</li>
+				<li>impair our vision and hearing</li>
+				<li>make us lose concentration and feel drowsy.</li>
+			</ul>
+
+	</div><!-- /content -->
+	<!-- /footer -->
+	<div data-role="footer" data-position="fixed" style="background-color: #F8F2DF;">
+		<h4 style="font-family:courier; color: #BF3434; ">&copy Safe Ride</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="responsiveslides.min.js"></script>
+
+<script>
+  $(".rslides").responsiveSlides({
+  auto: true,             // Boolean: Animate automatically, true or false
+  speed: 500,            // Integer: Speed of the transition, in milliseconds
+  timeout: 3000,          // Integer: Time between slide transitions, in milliseconds
+  pager: false,           // Boolean: Show pager, true or false
+  nav: false,             // Boolean: Show navigation, true or false
+  random: false,          // Boolean: Randomize the order of the slides, true or false
+  pause: false,           // Boolean: Pause on hover, true or false
+  pauseControls: true,    // Boolean: Pause when hovering controls, true or false
+  prevText: "Previous",   // String: Text for the "previous" button
+  nextText: "Next",       // String: Text for the "next" button
+  maxwidth: "",           // Integer: Max-width of the slideshow, in pixels
+  navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'
+  manualControls: "",     // Selector: Declare custom pager navigation
+  namespace: "rslides",   // String: Change the default namespace used
+  before: function(){},   // Function: Before callback
+  after: function(){}     // Function: After callback
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assess your drinking</title>
+	<link rel="stylesheet" href="quiz.css" >
+</head>
+<body>
+	<a href="index.html" style="background-color: #F8F2DF;;padding: 14px 25px;text-align: center;text-decoration: none;display: inline-block;">Back to homepage</a>
+	<div id="container" style="height: 330px;
+	width: 100%;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	background: rgba(255,255,255,0.5);
+	padding: 20px;
+	border: 1px solid #08038C;
+	box-shadow: 0 0 8px #fff0;">
+		<div id="question" style="  padding: 20px;
+									
+									background: #08038C;
+									border-radius: 20px;
+									margin: 10px 0 10px 0;
+									color: #f6f6f6;"></div>
+		<label class="option"><input type="radio" name="option" value="1"><span id="opt1"></span></label>
+		<label class="option"><input type="radio" name="option" value="2"><span id="opt2"></span></label>
+		<label class="option"><input type="radio" name="option" value="3"><span id="opt3"></span></label>
+		<label class="option"><input type="radio" name="option" value="4"><span id="opt4"></span></label>
+
+		<button id="nxtBTN" class="nxt-btn" onclick="loadNxtQues()">Next</button>
+
+	</div>
+	<div id="result" class="container result" style="display: none; text-align: center;  font-weight: bold; width: 100%; vertical-align: middle;"></div>
+
+    <script src="question.js"></script>
+    <script src="quizScript.js"></script>
+
+</body>
+</html>

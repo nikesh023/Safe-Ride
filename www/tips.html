@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Call</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+
+ <script src="js/jquery.js"></script>
+
+ <script src="js/jquery.mobile-1.4.5.js"></script>
+ 
+<script>
+	var challenges = [
+"<b>You don’t need willpower to stop drinking.</b> <br>Allen Carr’s Easyway is the complete opposite of other methods of stopping drinking. Collectively we call those other methods ‘the willpower method’. For example, the most up to date version of the ‘Drink Aware’ site is the complete reverse of Allen Carr’s Easyway. The advice given, as well intentioned as it is, rather than help someone quit drinking easily, is likely to cause abject misery and failure.",
+"<b>Change the way you think about drinking; you won’t be craving alcohol.</b><br>The willpower method suggests that you avoid temptation – with some advising that when you stop drinking you should find restaurants that don’t serve alcohol! Wouldn’t it be easier and so much more pleasant to change the way you think about alcohol so that you can enjoy going into any restaurant, bar, club, or party without feeling left out or deprived because you’re not drinking?",
+"<b>Don’t reduce your alcohol consumption; remind yourself how happy you are to be free</b><br>The hard way to stop drinking alcohol is to frequently remind yourself of why you want to stop drinking. Wouldn’t it be so much more wonderful to keep reminding yourself of how happy you are to be free?Mainstream advice recommends cutting down gradually. Yet they don’t recognise that cutting down is even harder than stopping. How many times have you tried to cut down in the past and failed? It ends up as torture and misery.",
+"<b> Be cool about withdrawal; the key is to realise that you’re not “giving up” anything at all.</b><br>Willpower methods bang on and on about “giving up”. The key is to realise that you’re not “giving up” anything at all. You’re getting rid of something that was causing you tremendous problems.So many other methods of quitting drinking put fear in your mind – warning of terrible “serious” physical withdrawal symptoms. Yet when you probe further they substantiate them as being “irritability, poor concentration, feeling shaky, feeling tired, difficulty sleeping or bad dreams”. It doesn’t sound that tough does it? I know blokes who feel like that when their football team loses at the weekend!",
+"<b>Quit alcohol without any unpleasantness and detox your body naturally; even for heavy drinkers</b><br>Help lines and advice lines such as ‘Drink Aware’ go on to talk about physical symptoms including trembling hands, sweating, headache, nausea, vomiting, palpitations and lack of appetite….but in the small print they do actually admit that they are extremely uncommon. Even at their worse they sound no more unpleasant than a touch of flu! If you’re worried about what alcohol is doing to you – would you waste a single moment worrying about having flu for a few days in return for your freedom? Of course not. In fact – most people who stop drinking with Allen Carr’s Easyway do so without any unpleasantness at all. Even heavy drinkers.",
+"<b>Enjoy your freedom; don’t be afraid of quitting alcohol</b><br>Of course if you’re worried about stopping drinking you should talk to your GP but first maybe decide to find out a little more about Allen Carr’s Easyway to Stop Drinking and why you really don’t have to be afraid of alcohol withdrawal. Why not take a look at our alcohol seminar and on-demand service information and Frequently Asked Questions on our website?",
+"<b>Set a drinking goal.</b><br>Choose a limit for how much you will drink. Make sure your limit is not more than one drink a day if you’re a woman, or two drinks a day if you’re a man—and try to schedule some alcohol-free days each week. Now write your drinking goal on a piece of paper. Put it where you can see it, such as on your refrigerator or bathroom mirror.",
+"<b>Keep a “diary” of your drinking. </b><br>To help you reach your goal, keep a “diary” of your drinking. For example, write it down every time you have a drink during the week. Try to keep your diary for 3 or 4 weeks. This will show you how much you drink and when. You may be surprised. How different is your goal from the amount you drink now?",
+"<b>Watch it at home.</b><br>Try to limit or remove alcohol from your home. It’s much easier to avoid drinking if you don’t keep temptations around.",
+"<b>Drink slowly.</b><br>When you drink, sip your drink slowly. Take a break of 30 minutes or one hour between drinks—or drink soda, water, or juice after each alcoholic drink. Drinking on an empty stomach is never a good idea, so make sure you eat food when you drink.",
+"<b>Take breaks from alcohol.</b><br>Pick a day or two each week when you will not drink at all. Then, try to stop drinking for one week. Think about how you feel physically and emotionally on these days. When you succeed and feel better, you may find it easier to cut down for good.",
+"<b>Make your intentions known</b><br>Tell your family and friends that you’re trying to stop drinking alcohol and explain why. This way, you can share your successes with them, and they’ll understand why you’ve started turning down drinks or trips to the pub. Frequently reminding yourself and the people close to you why you want to stop drinking can help keep you on track, and may even encourage someone else to give up or cut down with you.",
+"<b>Avoid temptation</b><br>In the early stages, it’s a good idea to avoid situations where you may be tempted to drink. This could mean opting out of the weekly pub quiz for a while, or if you tend to drink when eating out, try going to restaurants that don’t sell alcohol or simply volunteering to drive. Similarly, try to identify the times when you would usually drink and fill the gap with something else. So if you would usually head to the pub after work on a Friday evening, you could organise to meet friends at the cinema, or if you’re giving up alcohol in pursuit of a new, healthier you, why not fill the gap with a weekly exercise class or a trip to the swimming pool to help you wind down?Identifying your ‘triggers’ (times when you’re tempted to drink) is important, particularly if you’ve tried and struggled to stop drinking in the past. Try to identify why you were unsuccessful – did you still go to the pub most evenings? Did you explain your reasons for not drinking to your partner? Was alcohol still readily available at home?",
+"<b>Be persistent. </b><br> Most people who successfully cut down or stop drinking altogether do so only after several attempts. You'll probably have setbacks, but don't let them keep you from reaching your long-term goal. There's really no final endpoint, as the process usually requires ongoing effort.",
+"<b>Don't Forget to Eat</b><br>For some drinkers, eating food will reduce their craving for alcohol. This is not true for all drinkers, but if eating something reduces your craving for a drink, making sure you eat a meal at times when you usually drink might help you reduce the amount you drink.",
+"<b>Avoid Your Triggers</b><br>Whether you are trying to cut down or quit drinking altogether, it is a good idea to avoid situations in which you are used to drinking. People, places, things and certain activities can be triggers that cause you to have an urge to drink.",
+"<b>Do Something Else</b><br>If drinking has become a big part of your life, try substituting other activities during those times when you might usually drink. Take up a hobby, begin an exercise program, make new friends, or spend more time with your family."
+
+]
+
+function randomNum(low, high){
+var rando = Math.floor(Math.random() * (high - low + 1)) + low;
+return rando;
+}
+
+console.log(randomNum(1,17));
+
+//Returns a random string from challenges array
+function getChallenge(){
+var min = 0;
+var max = challenges.length - 1;
+var randomIndex = randomNum(min, max);
+return challenges[randomIndex];
+}
+
+function displayChallenge(){
+document.getElementById("output").innerHTML = getChallenge();
+}
+</script>
+<script>
+
+$( document ).on( "pagecreate", "#pageone", function() {
+    $( document ).on( "swipeleft swiperight", "#pageone", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft" ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
+
+</script>
+
+</head>
+<body>
+
+ 
+ <div data-role="page" id="pageone" data-theme="a">
+ 
+ <div data-role="header" style="background-color: #F8F2DF; " >
+<h1>Tips to stop drinking.</h1>
+       
+        <a href="#left-panel" data-icon="bars" data-iconpos="notext" data-shadow="true" data-iconshadow="true" class="ui-nodisc-icon" title="Swipe to Open Menu" style="background-color:#F4B14D;"></a>
+       
+    </div><!-- /header -->
+    
+    <div data-role="panel" id="left-panel" style="background-color: #F8F2DF; ">
+       
+        <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right" style="color: #BF3434;">Close</a>
+        <h3 style="font-family: serif;  text-shadow: 0px 0px #688499; font-weight: bold; text-align: center;
+   margin-bottom: initial;color: #BF3434;">Menu</h3>
+<br></br>
+         <ul data-role="listview">
+          <li><a href="index.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-home" style="text-align: center;color: #BF3434;">Home</a></li>
+
+             <li><a href="call.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-phone"style="text-align: center;color: #BF3434;">Call someone</a></li>
+
+              <li><a href="tips.html"  data-ajax="false"class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Tips to stop drinking alcohol</a></li>
+
+         <li><a href="geo.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-location"style="text-align: center;color: #BF3434;">Locate Yourself</a></li>
+
+         <li><a href="test.html" data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-star"style="text-align: center;color: #BF3434;">Test if you can drive</a></li>
+
+         <li><a href="quiz.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-check"style="text-align: center;color: #BF3434;">Assess yourself</a></li>
+
+         <li><a href="calculator.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-heart"style="text-align: center;color: #BF3434;">Test your blood</a></li>
+
+         <li><a href="videos.html"  data-ajax="false" class="ui-btn ui-btn-icon-top ui-icon-video"style="text-align: center;color: #BF3434;">Videos</a></li>
+        </ul>
+    </div><!-- /panel -->
+
+ <div data-role="main" class="ui-content" style="background-color:#f1f1f1;">
+
+	 <h3>Tips to Quit Alcohol Drinking</h3>
+<button onclick="displayChallenge()">Next Tips</button>
+<p id="output"></p>
+ <div data-role="header">
+ </div>
+ </div>
+</div>
+  </body>
